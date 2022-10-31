@@ -1,38 +1,246 @@
-.App {
-  text-align: center;
+body::-webkit-scrollbar {
+  display: none;
 }
 
-.App-logo {
-  height: 40vmin;
+.App {
+  user-select: none;
+  position: relative;
+  min-height: 100vh;
+}
+
+.home-section, .subscription-section {
+  background-color: #f5f5f5;
+}
+
+.subscription-section {
+  min-height: 87vh;
+}
+
+.btn.btn-sm {
+  padding: .25rem;
+  font-size: 0.65rem;
+}
+
+.btn {
+  text-transform: uppercase;
+  padding: .625rem 1.5rem .5rem;
+  font-size: .75rem;
+  font-weight: 500;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%), 0 2px 10px 0 rgb(0 0 0 / 10%);
+}
+
+.btn:disabled {
+  pointer-events: all;
+}
+
+img {
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  line-height: 60px;
+  background-color: #f5f5f5;
+  color: #333c7c;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+p {
+  text-align: justify;
+}
+
+.cursor-ban {
+  cursor: not-allowed !important;
+}
+
+.fa-instagram path {
+  fill: url(#rg);
+}
+
+.home-carousel-image {
+  height: 70vh;
+  background-size: cover;
+  background-position: top;
+}
+
+.home-carousel-image-1 {
+  background-image: url("./images/Home/IMG_5120.jpg");
+}
+
+.home-carousel-image-2 {
+  background-image: url("./images/Home/IMG_5136.jpg");
+}
+
+.home-carousel-image-3 {
+  background-image: url("./images/Home/IMG_5143.jpg");
+}
+
+.card {
+  border-radius: .7rem;
+}
+
+.login-section {
+  height: 88vh;
+  background-size: cover;
+  background-position: top;
+  background-image: linear-gradient(to right, rgba(86, 86, 246, 0.6), rgba(47, 166, 210, 0.6)), url("./images/Login/IMG_6243.jpg");
+}
+
+.login-section-widget {
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.form-wrapper {
+  background-color: white;
+  border-radius: 0.5rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.sigin-with-google-btn,
+.sigin-with-fb-btn {
+  background-color: #f5f5f5;
+  border: 1px solid #e1e1e1;
+  border-radius: 3rem;
+  padding: 0.75rem 1.25rem;
+}
+
+.google-logo {
+  height: 1.75vw;
+}
+
+.fb-logo {
+  height: 2vw;
+}
+
+.login-section-break {
+  color: #95989D;
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 500;
+  font-size: 0.85em;
+  text-align: center;
+}
+
+.forgot-password a,
+.privacy-text a {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 16px;
+  color: #003FFF;
+  font-family: 'Gilroy', sans-serif;
+}
+
+.btn-signin-signup-forgetpassword {
+  border-radius: 3rem;
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 600;
+}
+
+.bg-color-primary-dark-blue {
+  background-color: rgb(0, 63, 255);
+}
+
+.bg-color-warning-light-yellow {
+  background-color: #ffc1073d;
+}
+
+.signin-signup-forgetpassword-text {
+  display: inline-block;
+  transition: 0.2s ease-in-out;
+}
+
+.signin-signup-forgetpassword-text:hover {
+  transform: scale(1.2);
+}
+
+.privacy-text {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 0.825em;
+  line-height: 22px;
+  letter-spacing: 0.05px;
+  color: #797979;
+  text-align: left;
+}
+
+.reset-password-text {
+  color: #95989D;
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 500;
+  font-size: 0.825em;
+}
+
+.user-profile-action-dropdown .dropdown-menu {
+  min-width: 6.5rem;
+}
+
+.user-profile-action-dropdown a,
+.user-profile-action-dropdown a:hover,
+.user-profile-action-dropdown a:focus {
+  color: black;
+}
+
+.user-profile-action-item:active {
+  background-color: #e9ecef;
+}
+
+.user-profile-action-item-link {
+  padding: 0;
+}
+
+.user-profile-container {
+  overflow-wrap: break-word;
+}
+
+.user-profile-icon {
+  border: 2px solid lightgrey;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.billing-info-labels {
+  box-shadow: 0 0 1rem rgba(0,0,0,.15);
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.app-loader-section.show {
+  display: flex;
+  position: fixed;
+  z-index: 1000;
+  background-color: rgba(255,255,255, 0.75);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.app-loader-section > div {
+  margin: auto;
+}
+
+@media (max-width: 576px) {
+  .user-profile-name {
+    font-size: calc(1rem + .8vw);;
+    margin-top: 1rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .user-profile-email,
+  .user-profile-phone,
+  .user-profile-gender {
+    font-size: calc(0.75rem + .8vw);;
+    margin-top: 1rem;
+  }
+
+  .user-profile-info-section, .user-profile-edit-btn-section {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .btn-edit-profile {
+    margin-top: 1rem;
+  }
+
+  .user-profile-container-top-row {
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
   }
 }
