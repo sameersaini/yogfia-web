@@ -1,11 +1,12 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {
     getLoggedInUserInformation,
     resetUserRequest,
     userSignIn,
     userSignUp,
     resetUserPasswordRequest,
-    updateUserDetails
+    updateUserDetails,
+    updateUserPassword
 } from "../../api/account-manangement";
 import {showToast, ToastStates} from "./ToastSlice";
 import {getUserSubscriptions} from "./subscriptionSlice";
@@ -17,13 +18,14 @@ export enum UserSignUpStates {
     failed = 'failed',
     loggedOut = 'loggedOut'
 }
+
 export enum UserGender {
-    MALE= 'Male',
-    FEMALE='Female',
-    OTHER='Other',
+    MALE = 'Male',
+    FEMALE = 'Female',
+    OTHER = 'Other',
 }
 
-interface UserState {
+export interface UserState {
     signUp: {
         email: string | null;
         status: UserSignUpStates;
@@ -31,6 +33,8 @@ interface UserState {
     signIn: {
         email: string;
         phone: string;
+        age?: number;
+        country: string;
         name: string;
         gender: UserGender | undefined;
         status: UserSignUpStates;
@@ -38,15 +42,34 @@ interface UserState {
     }
 }
 
+const initialState: UserState = {
+    signUp: {
+        status: UserSignUpStates.idle,
+        email: null
+    },
+    signIn: {
+        email: '',
+        name: '',
+        phone: '',
+        country: '',
+        gender: undefined,
+        resetPasswordCompleted: false,
+        status: UserSignUpStates.idle,
+    },
+};
+
 export const standardSignUp = createAsyncThunk(
     'users/standardSignUp',
-    async ({ email, password, name, phoneNo }: Record<string, string>, thunkAPI) => {
+    async ({email, password, name, phoneNo}: Record<string, string>, thunkAPI) => {
         try {
             const response = await userSignUp(email, password, name, phoneNo);
-            thunkAPI.dispatch(showToast({ heading: 'Sign Up Successful.', text: 'You have been successfully signed up for YogFia.'}))
+            thunkAPI.dispatch(showToast({
+                heading: 'Sign Up Successful.',
+                text: 'You have been successfully signed up for YogFia.'
+            }))
             return response.data
         } catch (e: any) {
-            thunkAPI.dispatch(showToast({ heading: 'Sign Up Failed.', text: e, status: ToastStates.warning }))
+            thunkAPI.dispatch(showToast({heading: 'Sign Up Failed.', text: e, status: ToastStates.warning}))
             throw e
         }
     }
@@ -54,7 +77,7 @@ export const standardSignUp = createAsyncThunk(
 
 export const standardSignIn = createAsyncThunk(
     'users/standardSignIn',
-    async ({ email, password }: Record<string, string>, thunkAPI) => {
+    async ({email, password}: Record<string, string>, thunkAPI) => {
         try {
             const response = await userSignIn(email, password);
             if (response.email) {
@@ -62,7 +85,7 @@ export const standardSignIn = createAsyncThunk(
             }
             return response
         } catch (e: any) {
-            thunkAPI.dispatch(showToast({ heading: 'Sign In Failed.', text: e, status: ToastStates.warning }))
+            thunkAPI.dispatch(showToast({heading: 'Sign In Failed.', text: e, status: ToastStates.warning}))
             throw e
         }
     }
@@ -70,13 +93,38 @@ export const standardSignIn = createAsyncThunk(
 
 export const updateUserProfile = createAsyncThunk(
     'users/updateUserProfile',
-    async ({ email, name, phoneNo, gender }: Record<string, string>, thunkAPI) => {
+    async ({
+               email,
+               name,
+               phoneNo,
+               gender,
+               age,
+               country
+           }: { email: string, name: string, phoneNo: string, gender: string, age: number, country: string }, thunkAPI) => {
         try {
-            const response = await updateUserDetails(email, name, phoneNo, gender);
-            thunkAPI.dispatch(showToast({ heading: 'Profile updated successfully.', text: ''}))
+            const response = await updateUserDetails(email, name, phoneNo, gender, age, country);
+            thunkAPI.dispatch(showToast({heading: 'Profile updated successfully.', text: ''}))
             return response
         } catch (e: any) {
-            thunkAPI.dispatch(showToast({ heading: 'Profile update failed.', text: e, status: ToastStates.warning }))
+            thunkAPI.dispatch(showToast({heading: 'Profile update failed.', text: e, status: ToastStates.warning}))
+            throw e
+        }
+    }
+)
+
+export const updatePassword = createAsyncThunk(
+    'users/updatePassword',
+    async ({
+               email,
+               currentPassword,
+               newPassword
+           }: { email: string, currentPassword: string, newPassword: string }, thunkAPI) => {
+        try {
+            const response = await updateUserPassword(email, currentPassword, newPassword);
+            thunkAPI.dispatch(showToast({heading: 'Password updated successfully.', text: ''}))
+            return response
+        } catch (e: any) {
+            thunkAPI.dispatch(showToast({heading: 'Password update failed.', text: e, status: ToastStates.warning}))
             throw e
         }
     }
@@ -105,11 +153,17 @@ export const resetPasswordRequestAction = createAsyncThunk(
     async (email: string, thunkAPI) => {
         try {
             const response = await resetUserRequest(email);
-            thunkAPI.dispatch(showToast({ heading: 'Reset Password.', text: 'If we found an account associated with that username, we will send the 6 digit code to reset the password.'}))
+            thunkAPI.dispatch(showToast({
+                heading: 'Reset Password.',
+                text: 'If we found an account associated with that username, we will send the 6 digit code to reset the password.'
+            }))
             return response
         } catch (e: any) {
             console.log(e)
-            thunkAPI.dispatch(showToast({ heading: 'Reset Password.', text: 'If we found an account associated with that username, we will send the 6 digit code to reset the password.'}))
+            thunkAPI.dispatch(showToast({
+                heading: 'Reset Password.',
+                text: 'If we found an account associated with that username, we will send the 6 digit code to reset the password.'
+            }))
             throw e
         }
     }
@@ -120,34 +174,19 @@ export const resetPasswordRequestAction = createAsyncThunk(
 * */
 export const resetPasswordAction = createAsyncThunk(
     'users/resetPasswordAction',
-    async ({ email, password, code }: Record<string, string>, thunkAPI) => {
+    async ({email, password, code}: Record<string, string>, thunkAPI) => {
         try {
             const response = await resetUserPasswordRequest(email, password, code);
-            thunkAPI.dispatch(showToast({ heading: 'Reset Password Successful.', text: response.message}))
+            thunkAPI.dispatch(showToast({heading: 'Reset Password Successful.', text: response.message}))
             thunkAPI.dispatch(setResetPasswordState(true))
             return response
         } catch (e: any) {
             console.log(e)
-            thunkAPI.dispatch(showToast({ heading: 'Reset Password Failed.', text: e, status: ToastStates.warning }))
+            thunkAPI.dispatch(showToast({heading: 'Reset Password Failed.', text: e, status: ToastStates.warning}))
             throw e
         }
     }
 )
-
-const initialState: UserState = {
-    signUp: {
-        status: UserSignUpStates.idle,
-        email: null
-    },
-    signIn: {
-        email: '',
-        name: '',
-        phone: '',
-        gender: undefined,
-        resetPasswordCompleted: false,
-        status: UserSignUpStates.idle,
-    },
-};
 
 const userSlice = createSlice({
     name: 'user',
@@ -204,6 +243,8 @@ const userSlice = createSlice({
             state.signIn.name = action.payload.name;
             state.signIn.phone = action.payload.phoneNo;
             state.signIn.gender = action.payload.gender;
+            state.signIn.age = action.payload.age;
+            state.signIn.country = action.payload.country;
         })
         builder.addCase(standardSignIn.rejected, (state, action) => {
             state.signIn.status = UserSignUpStates.failed;
@@ -217,6 +258,8 @@ const userSlice = createSlice({
             state.signIn.name = action.payload.name;
             state.signIn.phone = action.payload.phoneNo;
             state.signIn.gender = action.payload.gender;
+            state.signIn.age = action.payload.age;
+            state.signIn.country = action.payload.country;
         })
         builder.addCase(standardUserInformation.rejected, (state, action) => {
             state.signIn.status = UserSignUpStates.failed;
@@ -226,21 +269,37 @@ const userSlice = createSlice({
         builder.addCase(standardUserInformation.pending, (state, action) => {
             state.signIn.status = UserSignUpStates.pending;
         })
-        builder.addCase(resetPasswordRequestAction.fulfilled, (state, action) => {})
-        builder.addCase(resetPasswordRequestAction.rejected, (state, action) => {})
-        builder.addCase(resetPasswordRequestAction.pending, (state, action) => {})
-        builder.addCase(resetPasswordAction.fulfilled, (state, action) => {})
-        builder.addCase(resetPasswordAction.rejected, (state, action) => {})
-        builder.addCase(resetPasswordAction.pending, (state, action) => {})
+        builder.addCase(resetPasswordRequestAction.fulfilled, (state, action) => {
+        })
+        builder.addCase(resetPasswordRequestAction.rejected, (state, action) => {
+        })
+        builder.addCase(resetPasswordRequestAction.pending, (state, action) => {
+        })
+        builder.addCase(resetPasswordAction.fulfilled, (state, action) => {
+        })
+        builder.addCase(resetPasswordAction.rejected, (state, action) => {
+        })
+        builder.addCase(resetPasswordAction.pending, (state, action) => {
+        })
+        builder.addCase(updatePassword.fulfilled, (state, action) => {
+        })
+        builder.addCase(updatePassword.rejected, (state, action) => {
+        })
+        builder.addCase(updatePassword.pending, (state, action) => {
+        })
         builder.addCase(updateUserProfile.fulfilled, (state, action) => {
             state.signIn.name = action.payload.name;
             state.signIn.phone = action.payload.phoneNo;
             state.signIn.gender = action.payload.gender;
+            state.signIn.age = action.payload.age;
+            state.signIn.country = action.payload.country;
         })
-        builder.addCase(updateUserProfile.rejected, (state, action) => {})
-        builder.addCase(updateUserProfile.pending, (state, action) => {})
+        builder.addCase(updateUserProfile.rejected, (state, action) => {
+        })
+        builder.addCase(updateUserProfile.pending, (state, action) => {
+        })
     }
 })
 
-export const { resetSignUpState, resetSignInState, setResetPasswordState, logoutUser } = userSlice.actions
+export const {resetSignUpState, resetSignInState, setResetPasswordState, logoutUser} = userSlice.actions
 export default userSlice.reducer

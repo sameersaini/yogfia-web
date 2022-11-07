@@ -32,7 +32,6 @@ const Signup: React.FC = () => {
                 event.preventDefault();
                 event.stopPropagation();
                 if(event.currentTarget.checkValidity()) {
-                    console.log(phoneNo)
                     dispatch(standardSignUp({ email, password, name, phoneNo: phoneNo as string }));
                 }
             }}>
@@ -58,8 +57,10 @@ const Signup: React.FC = () => {
                         placeholder="Your Password"
                         aria-label="password"
                         aria-describedby="basic-addon2"
+                        isInvalid={password.length > 0 && password.length !== 8}
                         required
                     />
+                    <Form.Control.Feedback type="invalid">Password should be 8 character long.</Form.Control.Feedback>
                 </InputGroup>
                 <InputGroup className="my-3">
                     <InputGroup.Text id="basic-addon2"><FontAwesomeIcon  icon={faUser}/></InputGroup.Text>
@@ -78,7 +79,9 @@ const Signup: React.FC = () => {
                     defaultCountry="IN"
                     placeholder="Your phone number"
                     value={phoneNo}
-                    onChange={(value) => setPhoneNo(value)}/>
+                    onChange={(value) => setPhoneNo(value)}
+                />
+                <Form.Control.Feedback type="invalid">Password should be 8 character long.</Form.Control.Feedback>
                 <Row className="privacy-text">
                     <Col>
                         By signing up, you agree to our <a href="">terms of service</a> and <a href="">privacy policy</a>.

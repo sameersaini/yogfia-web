@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {Col, Container, Row, Tab, Tabs} from "react-bootstrap";
-import UserProfileEdit from "./UserProfile";
+import UserProfile from "./UserProfile";
 import {useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {RootState} from "../../redux/store";
@@ -24,7 +24,7 @@ const Profile: React.FC = () => {
                         className="mb-3"
                     >
                         <Tab eventKey="profile" title="My Profile">
-                            <UserProfileEdit />
+                            <UserProfile />
                         </Tab>
                         <Tab eventKey="billing" title="Billing">
                             <Billing />

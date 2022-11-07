@@ -3,17 +3,18 @@ import {Button, Col, Container, Row, Table} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import dayjs from 'dayjs'
 import {AppDispatch, RootState} from "../../redux/store";
-import {PlanObj, SubscriptionState} from "../../redux/slices/subscriptionSlice";
+import {cancelSubscription, PlanObj, SubscriptionState} from "../../redux/slices/subscriptionSlice";
+import {hideModal, showModal} from "../../redux/slices/appModalSlice";
 
 const Billing: React.FC = () => {
-    const { subscriptions, plans, invoices } = useSelector<RootState, SubscriptionState>(state => state.subscription);
+    const {subscriptions, plans, invoices} = useSelector<RootState, SubscriptionState>(state => state.subscription);
     // @ts-ignore
     let activePlan: PlanObj = {};
     const latestSubscription = subscriptions[0] ?? {};
     if (Object.keys(latestSubscription).length > 0 && Object.keys(plans).length > 0 && plans[latestSubscription.plan_id]) {
         activePlan = plans[latestSubscription.plan_id];
     }
-    console.log(latestSubscription)
+
     const dateFormatStr = 'D MMM YYYY'
     const dateTimeFormatStr = 'D MMM YYYY hh:mm a'
     return (
@@ -22,7 +23,7 @@ const Billing: React.FC = () => {
                 <h5>Subscription</h5>
                 <Row className="m-0 p-0">
                     <Col className="col-12 col-sm-6 col-md-3 mt-2">
-                        <label className="billing-info-labels p-1">Active Plan</label>
+                        <label className="billing-info-labels p-1">Plan</label>
                         <div>
                             {activePlan.name} {activePlan.period ? `(${activePlan.period})` : ''}
                         </div>
@@ -30,7 +31,8 @@ const Billing: React.FC = () => {
                     <Col className="col-12 col-sm-6 col-md-3 mt-2">
                         <label className="billing-info-labels p-1">Status</label>
                         <div style={{textTransform: "capitalize"}}>
-                            {latestSubscription.status} <SubscriptionActiveButtons status={latestSubscription.status} subsId={latestSubscription.id}/>
+                            {latestSubscription.status} <SubscriptionActiveButtons status={latestSubscription.status}
+                                                                                   subsId={latestSubscription.id}/>
                         </div>
                     </Col>
                     <Col className="col-12 col-sm-6 col-md-3 mt-2">
@@ -56,7 +58,7 @@ const Billing: React.FC = () => {
                     <Col className="col-12 col-sm-6 col-md-3 mt-2">
                         <label className="billing-info-labels p-1">Last Billed</label>
                         <div style={{textTransform: "capitalize"}}>
-                            {latestSubscription.start_at ? dayjs.unix(latestSubscription.current_start).format(dateTimeFormatStr): ''}
+                            {latestSubscription.start_at ? dayjs.unix(latestSubscription.current_start).format(dateTimeFormatStr) : ''}
                         </div>
                     </Col>
                     <Col className="col-12 col-sm-6 col-md-3 mt-2">
@@ -73,20 +75,19 @@ const Billing: React.FC = () => {
                     </Col>
                 </Row>
             </Row>
-
             <Row className="shadow-lg m-5 p-4 user-profile-container-top-row">
                 <h5>Payments</h5>
                 <Table responsive>
                     <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Subscription Id</th>
-                            <th>Payment Id</th>
-                            <th>Plan</th>
-                            <th>Invoice Date</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                        </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Subscription Id</th>
+                        <th>Payment Id</th>
+                        <th>Plan</th>
+                        <th>Invoice Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
                     </thead>
                     <tbody>
                     {
@@ -131,8 +132,12 @@ const SubscriptionActiveButtons: React.FC<{ status: string, subsId: string }> = 
     if (props.status === 'active') {
         return (
             <>
-                <Button size="sm" className="mx-2">Pause</Button>
-                <Button size="sm" variant="danger">Cancel</Button>
+                <Button size="sm" variant="danger" onClick={() => dispatch(showModal({
+                    heading: 'Cancel Subscription',
+                    body: 'Are you sure you want to Cancel this subscription?',
+                    actonButtonText: 'Yes, Cancel subscription',
+                    action: () => dispatch(cancelSubscription({subsId: props.subsId})),
+                }))}>Cancel</Button>
             </>
         )
     } else if (props.status === 'halted' || props.status === 'pending') {
@@ -144,7 +149,12 @@ const SubscriptionActiveButtons: React.FC<{ status: string, subsId: string }> = 
     } else if (props.status === 'paused') {
         return (
             <>
-                <Button size="sm" variant="success">Resume Subscription</Button>
+                <Button size="sm" variant="success" onClick={() => dispatch(showModal({
+                    heading: 'Resume Subscription',
+                    body: 'Are you sure you want to Resume this subscription?',
+                    actonButtonText: 'Yes, Resume subscription',
+                    action: () => dispatch(hideModal()),
+                }))}>Resume Subscription</Button>
             </>
         )
     }

@@ -32,7 +32,6 @@ const Header: React.FC = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav activeKey={location.pathname} className="me-auto">
                         <Nav.Link as={Link} to="/" eventKey="/">Home</Nav.Link>
-                        <Nav.Link as={Link} to="/about" eventKey="/about">About</Nav.Link>
                         <Nav.Link as={Link} to="/courses" eventKey="/courses">Courses</Nav.Link>
                         <Nav.Link as={Link} to="/subscription" eventKey="/subscription">Subscription</Nav.Link>
                         <Nav.Link as={Link} to="/blog" eventKey="/blog">Blog</Nav.Link>

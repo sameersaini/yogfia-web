@@ -3,13 +3,15 @@ import userSlice from "./slices/UserSlice";
 import toastSlice from "./slices/ToastSlice";
 import subscriptionSlice from "./slices/subscriptionSlice";
 import appLoaderSlice from "./slices/appLoaderSlice";
+import appModalSlice from "./slices/appModalSlice";
 
 export const store = configureStore({
     reducer: {
         user: userSlice,
         toast: toastSlice,
         subscription: subscriptionSlice,
-        appLoader: appLoaderSlice
+        appLoader: appLoaderSlice,
+        appModal: appModalSlice,
     },
 })
 

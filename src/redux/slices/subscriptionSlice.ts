@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {
+    cancelCurrentSubscription,
     createRazorPaySubscription,
     getAllUserSubscriptions,
     getSubscriptionInvoiceDetails,
@@ -7,6 +8,7 @@ import {
     saveRazorPaySubscriptionStart
 } from '../../api/razor-pay';
 import {showToast, ToastStates} from "./ToastSlice";
+import {hideLoader, showLoader} from "./appLoaderSlice";
 
 export interface PlanObj {
     id: string;
@@ -82,6 +84,9 @@ export const saveSuccessfulSubscription = createAsyncThunk(
     async ({paymentId, subscriptionId, razorPaySignature}: Record<string, string>, thunkAPI) => {
         try {
             const response = await saveRazorPaySubscriptionStart(paymentId, subscriptionId, razorPaySignature);
+            thunkAPI.dispatch(showLoader());
+            thunkAPI.dispatch(getUserSubscriptions());
+            thunkAPI.dispatch(hideLoader());
             return response.data
         } catch (e: any) {
             thunkAPI.dispatch(showToast({ heading: 'Subscription failed.', text: e, status: ToastStates.warning }))
@@ -133,29 +138,34 @@ export const getSubscriptionInvoices = createAsyncThunk(
     }
 );
 
+export const cancelSubscription = createAsyncThunk(
+    'subscription/cancelSubscription',
+    async ({subsId}: {subsId: string}, thunkAPI) => {
+        try {
+            const response = await cancelCurrentSubscription(subsId);
+            return response
+        } catch (e: any) {
+            thunkAPI.dispatch(showToast({ heading: 'Cannot cancel subscription.', text: e, status: ToastStates.warning }))
+            throw e
+        }
+    }
+);
+
 
 const subscriptionSlice = createSlice({
     name: 'subscription',
     initialState,
     reducers: {
-        resetSubscriptionState: (state) => {
+        resetSubscriptionState: (_) => {
             return {
                 ...initialState,
             }
         },
     },
     extraReducers: (builder) => {
-        builder.addCase(createSubscription.fulfilled, (state, action) => {})
-        builder.addCase(createSubscription.rejected, (state, action) => {})
-        builder.addCase(createSubscription.pending, (state, action) => {})
-        builder.addCase(saveSuccessfulSubscription.fulfilled, (state, action) => {})
-        builder.addCase(saveSuccessfulSubscription.rejected, (state, action) => {})
-        builder.addCase(saveSuccessfulSubscription.pending, (state, action) => {})
         builder.addCase(getUserSubscriptions.fulfilled, (state, action) => {
             state.subscriptions = action.payload.sort((a, b) => a.charge_at - b.charge_at )
         })
-        builder.addCase(getUserSubscriptions.rejected, (state, action) => {})
-        builder.addCase(getUserSubscriptions.pending, (state, action) => {})
         builder.addCase(getPlanDetails.fulfilled, (state, action) => {
             state.plans[action.payload.id] = {
                 id: action.payload.id,
@@ -166,17 +176,14 @@ const subscriptionSlice = createSlice({
                 description: action.payload.item.description,
             };
         })
-        builder.addCase(getPlanDetails.rejected, (state, action) => {})
-        builder.addCase(getPlanDetails.pending, (state, action) => {})
         builder.addCase(getSubscriptionInvoices.fulfilled, (state, action) => {
+            console.log(action)
             if(Array.isArray(action.payload.items)) {
                 action.payload.items.forEach((item: InvoiceObj) => {
                     state.invoices[item.id] = item;
                 })
             }
         })
-        builder.addCase(getSubscriptionInvoices.rejected, (state, action) => {})
-        builder.addCase(getSubscriptionInvoices.pending, (state, action) => {})
     }
 })
 

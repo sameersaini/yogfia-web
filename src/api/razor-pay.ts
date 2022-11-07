@@ -1,6 +1,6 @@
 import {getEnvData} from "../env";
 import {handleResponse} from "./account-manangement";
-import {PlanObj, SubscriptionObj} from "../redux/slices/subscriptionSlice";
+import {SubscriptionObj} from "../redux/slices/subscriptionSlice";
 
 export const createRazorPaySubscription = (planId: string) => {
     return fetch(`${getEnvData().api.url}/payment/create-subscription`, {
@@ -81,6 +81,21 @@ export const getSubscriptionInvoiceDetails = (subscriptionId: string) => {
         .then(handleResponse)
         .catch((error) => {
             console.error('Error in getSubscriptionInvoiceDetails:', error);
+            throw error;
+        });
+}
+
+export const cancelCurrentSubscription = (subscriptionId: string) => {
+    return fetch(`${getEnvData().api.url}/payment/subscription/cancel/${subscriptionId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+    })
+        .then(handleResponse)
+        .catch((error) => {
+            console.error('Error in cancelCurrentSubscription:', error);
             throw error;
         });
 }

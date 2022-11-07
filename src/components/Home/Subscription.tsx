@@ -34,9 +34,9 @@ const Subscription: React.FC = () => {
             name: "YogFia",
             description: `YogFia ${plan} Subscription`,
             prefill: {
-                name: "Sameer",
-                email: "samsaini404@gmail.com",
-                contact: "917804919797"
+                name: signIn.name,
+                email: signIn.email,
+                contact: signIn.phone,
             },
             theme: {
                 color: "#3399cc"

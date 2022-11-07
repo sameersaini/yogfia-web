@@ -91,7 +91,7 @@ export const resetUserPasswordRequest = (email: string, password: string, code: 
         });
 }
 
-export const updateUserDetails = (email: string, name: string, phoneNo: string, gender: string) => {
+export const updateUserDetails = (email: string, name: string, phoneNo: string, gender: string, age: number, country: string) => {
     return fetch(`${getEnvData().api.url}/user/update-profile`, {
         method: 'PUT',
         headers: {
@@ -103,11 +103,33 @@ export const updateUserDetails = (email: string, name: string, phoneNo: string, 
             name,
             phoneNo,
             gender,
+            age,
+            country,
         }),
     })
         .then(handleResponse)
         .catch((error) => {
             console.error('Error in resetUserPasswordRequest:', error);
+            throw error;
+        });
+}
+
+export const updateUserPassword = (email: string, currentPassword: string, newPassword: string) => {
+    return fetch(`${getEnvData().api.url}/user/update-password`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+            username: email,
+            password: currentPassword,
+            newPassword
+        }),
+    })
+        .then(handleResponse)
+        .catch((error) => {
+            console.error('Error in updateUserPassword:', error);
             throw error;
         });
 }

@@ -217,6 +217,14 @@ p {
   margin: auto;
 }
 
+.change-password-btn-text {
+  font-size: 0.6rem;
+}
+
+.user-profile-details-subscription {
+  display: inline-block;
+}
+
 @media (max-width: 576px) {
   .user-profile-name {
     font-size: calc(1rem + .8vw);;
@@ -239,8 +247,13 @@ p {
     margin-top: 1rem;
   }
 
+  .user-profile-container {
+    padding: 0;
+  }
+
   .user-profile-container-top-row {
     margin-left: 1rem !important;
     margin-right: 1rem !important;
+    padding: 1.5rem !important;
   }
 }
