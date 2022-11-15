@@ -23,17 +23,17 @@ const Login: React.FC = () => {
                                 justify
                             >
                                 <Tab eventKey="login" title="Sign In">
-                                    <ExternalLogin />
+                                    {/*<ExternalLogin />
                                     <Row className="my-3 login-section-break">
                                         <Col>or</Col>
-                                    </Row>
+                                    </Row>*/}
                                     <Signin setShowForgetPasswordSection={setShowForgetPasswordSection} />
                                 </Tab>
                                 <Tab eventKey="signup" title="Sign Up">
-                                    <ExternalLogin />
+                                    {/*<ExternalLogin />
                                     <Row className="mt-3 login-section-break">
                                         <Col>or</Col>
-                                    </Row>
+                                    </Row>*/}
                                     <Signup />
                                 </Tab>
                             </Tabs>

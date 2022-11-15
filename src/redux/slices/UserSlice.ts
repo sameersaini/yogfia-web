@@ -25,21 +25,24 @@ export enum UserGender {
     OTHER = 'Other',
 }
 
+export interface UserSignInState {
+    userId: number;
+    email: string;
+    phone: string;
+    age?: number;
+    country: string;
+    name: string;
+    gender: UserGender | undefined;
+    status: UserSignUpStates;
+    resetPasswordCompleted: boolean
+}
+
 export interface UserState {
     signUp: {
         email: string | null;
         status: UserSignUpStates;
     },
-    signIn: {
-        email: string;
-        phone: string;
-        age?: number;
-        country: string;
-        name: string;
-        gender: UserGender | undefined;
-        status: UserSignUpStates;
-        resetPasswordCompleted: boolean
-    }
+    signIn: UserSignInState
 }
 
 const initialState: UserState = {
@@ -48,6 +51,7 @@ const initialState: UserState = {
         email: null
     },
     signIn: {
+        userId: 0,
         email: '',
         name: '',
         phone: '',
@@ -240,6 +244,7 @@ const userSlice = createSlice({
         builder.addCase(standardSignIn.fulfilled, (state, action) => {
             state.signIn.status = UserSignUpStates.successful;
             state.signIn.email = action.payload.email;
+            state.signIn.userId = action.payload.userId;
             state.signIn.name = action.payload.name;
             state.signIn.phone = action.payload.phoneNo;
             state.signIn.gender = action.payload.gender;
@@ -255,6 +260,7 @@ const userSlice = createSlice({
         builder.addCase(standardUserInformation.fulfilled, (state, action) => {
             state.signIn.status = UserSignUpStates.successful;
             state.signIn.email = action.payload.email;
+            state.signIn.userId = action.payload.userId;
             state.signIn.name = action.payload.name;
             state.signIn.phone = action.payload.phoneNo;
             state.signIn.gender = action.payload.gender;

@@ -18,6 +18,11 @@ import Subscription from "./components/Subscription";
 import Profile from "./components/Profile";
 import AppLoader from "./components/Loader";
 import AppModal from "./components/Modal";
+import Poses from "./components/Poses";
+import PosesStanding from "./components/Poses/PosesStanding";
+import PosesLaying from "./components/Poses/PosesLaying";
+import PosesSitting from "./components/Poses/PosesSitting";
+import PosesCobra from "./components/Poses/LayingDown/Cobra";
 
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -33,6 +38,11 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/" element={<Home />}/>
               <Route path="/signin" element={<Login />}/>
+              <Route path="/poses" element={<Poses />}/>
+              <Route path="/poses/standing" element={<PosesStanding />}/>
+              <Route path="/poses/sitting" element={<PosesSitting />}/>
+              <Route path="/poses/laying" element={<PosesLaying />}/>
+              <Route path="/poses/cobra-pose" element={<PosesCobra />}/>
               <Route path="/subscription" element={<Subscription />}/>
               <Route path="/profile" element={<Profile />}/>
               <Route path="*" element={<Navigate to="/" />} />

@@ -4,12 +4,14 @@ import toastSlice from "./slices/ToastSlice";
 import subscriptionSlice from "./slices/subscriptionSlice";
 import appLoaderSlice from "./slices/appLoaderSlice";
 import appModalSlice from "./slices/appModalSlice";
+import artifactSlice from "./slices/artifactSlice";
 
 export const store = configureStore({
     reducer: {
         user: userSlice,
         toast: toastSlice,
         subscription: subscriptionSlice,
+        artifact: artifactSlice,
         appLoader: appLoaderSlice,
         appModal: appModalSlice,
     },
