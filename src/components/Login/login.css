@@ -1,0 +1,39 @@
+.login-section {
+    height: 88vh;
+    background-size: cover;
+    background-position: top;
+    background-image: linear-gradient(to right, rgba(86, 86, 246, 0.6), rgba(47, 166, 210, 0.6)), url("./../../images/Login/IMG_6243.jpg");
+}
+
+.login-section-widget {
+    justify-content: center;
+}
+
+.login-section-break {
+    color: #95989D;
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 500;
+    font-size: 0.85em;
+    text-align: center;
+}
+
+.form-wrapper {
+    background-color: white;
+    border-radius: 0.5rem;
+}
+
+.sigin-with-google-btn,
+.sigin-with-fb-btn {
+    background-color: #f5f5f5;
+    border: 1px solid #e1e1e1;
+    border-radius: 3rem;
+    padding: 0.75rem 1.25rem;
+}
+
+.google-logo {
+    height: 1.75vw;
+}
+
+.fb-logo {
+    height: 2vw;
+}

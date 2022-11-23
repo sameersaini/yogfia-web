@@ -10,6 +10,7 @@ import {
 } from "../../redux/slices/UserSlice";
 import {AppDispatch, RootState} from "../../redux/store";
 import {showToast, ToastStates} from "../../redux/slices/ToastSlice";
+import './forgot-password.css'
 
 interface ForgetPasswordProps {
     setShowForgetPasswordSection: Function;

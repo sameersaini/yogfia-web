@@ -5,6 +5,7 @@ import Signin from "./Sigin";
 import Signup from "./Signup";
 import ExternalLogin from "./ExternalLogin";
 import ForgetPassword from "./ForgetPassword";
+import './login.css'
 
 const Login: React.FC = () => {
     const [showForgetPasswordSection, setShowForgetPasswordSection] = useState<Boolean>(false);

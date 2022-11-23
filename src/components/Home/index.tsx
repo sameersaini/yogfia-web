@@ -3,6 +3,7 @@ import {Container} from "react-bootstrap";
 import Reviews from "./Reviews";
 import Subscription from "./Subscription";
 import HomeCarousel from "./HomeCarousel";
+import './home.css'
 
 const Home: React.FC = () => {
     return (
@@ -12,7 +13,7 @@ const Home: React.FC = () => {
             {/* Review Cards Section*/}
             <Reviews />
             {/* Subscription section */}
-            <Subscription />
+            {/*<Subscription />*/}
         </Container>
     )
 }

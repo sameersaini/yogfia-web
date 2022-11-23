@@ -1,0 +1,108 @@
+
+.yoga-poses-main-page-container {
+    margin-left: 7rem;
+    margin-right: 7rem;
+}
+
+.yoga-poses-heading-sub-text {
+    font-style: italic;
+    /*color: #6d6d6d;*/
+    line-height: 1.6;
+    font-size: 18px;
+}
+
+.yoga-poses-heading {
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    line-height: 1.3;
+    font-weight: 300;
+}
+
+.yoga-poses-by-type-heading {
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.yoga-pose-sub-type-heading {
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    line-height: 1.3;
+    font-weight: 500;
+}
+
+.yoga-poses-type-heading {
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.yoga-poses-type-image {
+    background-size: cover;
+    background-position: bottom;
+    height: 250px;
+}
+
+.standing-yoga-img {
+    background-image: url("../../images/Poses/Main-Page/standing.jpeg");
+}
+
+.sitting-yoga-img {
+    background-image: url("../../images/Poses/Main-Page/sitting.jpeg");
+}
+
+.laying-down-yoga-img {
+    background-image: url("../../images/Poses/Main-Page/laying-down.jpeg");
+}
+
+.cobra-yoga-img {
+    background-image: url("../../images/Poses/laying-pose/cobra-small.jpeg");
+}
+
+.cobra-yoga-img-large {
+    background-image: url("../../images/Poses/laying-pose/cobra-large.jpeg");
+    height: 500px;
+}
+
+.spinx-yoga-img {
+    background-image: url("../../images/Poses/laying-pose/spinx-small.jpeg");
+}
+
+.spinx-yoga-img-large {
+    background-image: url("../../images/Poses/laying-pose/spinx-large.jpeg");
+    height: 500px;
+}
+
+.locust-yoga-img {
+    background-image: url("../../images/Poses/laying-pose/locust-small.jpeg");
+}
+
+.locust-yoga-img-large {
+    background-image: url("../../images/Poses/laying-pose/locust-large.jpeg");
+    height: 500px;
+}
+
+.up-dog-yoga-img {
+    background-image: url("../../images/Poses/laying-pose/up-dog-small.jpeg");
+}
+
+.up-dog-yoga-img-large {
+    background-image: url("../../images/Poses/laying-pose/up-dog-large.jpeg");
+    height: 500px;
+}
+
+.hero-yoga-img {
+    background-image: url("../../images/Poses/laying-pose/hero-small.jpeg");
+}
+
+.hero-yoga-img-large {
+    background-image: url("../../images/Poses/laying-pose/hero-large.jpeg");
+    height: 500px;
+}
+
+@media (max-width: 576px) {
+    .yoga-poses-main-page-container {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+}

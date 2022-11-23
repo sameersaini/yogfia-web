@@ -18,6 +18,24 @@ const PosesLaying: React.FC = () => {
                     <div className="yoga-poses-type-image cobra-yoga-img"></div>
                     <h4 className="yoga-poses-type-heading">Cobra Pose (Bhujangasana)</h4>
                 </Col>
+                <Col className='col-md-3 col-12 mt-2 cursor-pointer' onClick={() => navigate('/poses/spinx-pose')}>
+                    <div className="yoga-poses-type-image spinx-yoga-img"></div>
+                    <h4 className="yoga-poses-type-heading">Spinx Pose (Bhujangasana)</h4>
+                </Col>
+                <Col className='col-md-3 col-12 mt-2 cursor-pointer' onClick={() => navigate('/poses/locust-pose')}>
+                    <div className="yoga-poses-type-image locust-yoga-img"></div>
+                    <h4 className="yoga-poses-type-heading">Locust Pose</h4>
+                </Col>
+                <Col className='col-md-3 col-12 mt-2 cursor-pointer' onClick={() => navigate('/poses/up-dog-pose')}>
+                    <div className="yoga-poses-type-image up-dog-yoga-img"></div>
+                    <h4 className="yoga-poses-type-heading">Upward-Facing Dog</h4>
+                </Col>
+            </Row>
+            <Row className="mt-4 text-center">
+                <Col className='col-md-3 col-12 mt-2 cursor-pointer' onClick={() => navigate('/poses/hero-pose')}>
+                    <div className="yoga-poses-type-image hero-yoga-img"></div>
+                    <h4 className="yoga-poses-type-heading">Hero Pose</h4>
+                </Col>
             </Row>
         </div>
     )

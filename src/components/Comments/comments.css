@@ -1,0 +1,101 @@
+.user-comment-text-col > p {
+    width: fit-content;
+    max-width: 100%;
+    min-width: 90px;
+}
+
+.user-comment-text-col > p, .comment-input, .comment-input-sm {
+    background-color: #f5f5f5;
+    border-radius: 18px;
+}
+
+.comment-like-count:hover {
+    cursor: pointer;
+}
+
+.user-comment-like-count {
+    background-color: #ededed;
+    border-radius: 18px;
+    padding: 4px;
+    right: 4px;
+    bottom: -15px;
+    font-size: small;
+}
+
+.comment-like-text {
+    font-size: small;
+    bottom: -15px;
+}
+
+.comment-delete-text, .comment-edit-text {
+    bottom: 16px;
+    right: -26px;
+    padding-right: 8px;
+    padding-left: 8px;
+    color: #acacac;
+}
+
+.comment-edit-text {
+    right: -50px;
+}
+
+.comment-delete-text:hover, .comment-edit-text:hover {
+    background-color: #ededed;
+    border-radius: 18px;
+    cursor: pointer;
+    font-size: larger;
+    color: black;
+    transition: font-size 0.5s;
+}
+
+.comment-like-text:hover, .comment-edit-text:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.comment-input {
+    border: none;
+    padding: 0.65rem;
+}
+
+.comment-input-sm {
+    border: none;
+    padding: 0.25rem;
+}
+
+.comment-input-sm > input {
+    font-size: small;
+    padding-left: 0.5rem;
+}
+
+.comment-input:focus-visible, .comment-input-sm:focus-visible {
+    outline: none;
+}
+
+.like-already-likes {
+    color: #2374e1;
+}
+.comment-like-icon-section {
+    border-radius: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.comment-like-icon-section:hover {
+    cursor: pointer;
+    background-color: #f5f5f5;
+}
+
+.comment-like-icon-section:first-child {
+    margin-right: 5px;
+    margin-left: 15px;
+}
+
+.comment-like-icon-section:last-child {
+    margin-right: 15px;
+    margin-left: 5px;
+}
+
+.edit-comment-input {
+    flex-grow: 1;
+}

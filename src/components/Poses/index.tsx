@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import {Col, Row} from "react-bootstrap";
+import './poses.css'
 
 const Poses: React.FC = () => {
     const navigate = useNavigate();

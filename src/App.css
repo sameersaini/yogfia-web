@@ -2,10 +2,15 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+
 .App {
   user-select: none;
-  position: relative;
-  min-height: 100vh;
+  min-height: 93vh;
+  background-color: rgba(239, 211, 211, 0.53);
 }
 
 .video-responsive {
@@ -25,92 +30,8 @@ body::-webkit-scrollbar {
   height: 80%;
 }
 
-
-.yoga-poses-main-page-container {
-  margin-left: 7rem;
-  margin-right: 7rem;
-}
-
-.yoga-poses-heading-sub-text {
-  font-style: italic;
-  color: #6d6d6d;
-  line-height: 1.6;
-  font-size: 18px;
-}
-
-.yoga-poses-heading {
-  text-transform: uppercase;
-  letter-spacing: .2em;
-  line-height: 1.3;
-  font-weight: 300;
-}
-
-.yoga-poses-by-type-heading {
-  text-transform: uppercase;
-  letter-spacing: .2em;
-  line-height: 1.3;
-  font-weight: 600;
-}
-
-.yoga-pose-sub-type-heading {
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  line-height: 1.3;
-  font-weight: 500;
-}
-
-.yoga-poses-type-heading {
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-.yoga-poses-type-image {
-  background-size: cover;
-  background-position: top;
-  height: 250px;
-}
-
-.standing-yoga-img {
-  background-image: url("./images/Poses/Main-Page/standing.jpeg");
-}
-
-.sitting-yoga-img {
-  background-image: url("./images/Poses/Main-Page/sitting.jpeg");
-}
-
-.laying-down-yoga-img {
-  background-image: url("./images/Poses/Main-Page/laying-down.jpeg");
-}
-
-.cobra-yoga-img {
-  background-image: url("./images/Poses/laying-pose/cobra-small.jpeg");
-}
-
-.cobra-yoga-img-large {
-  background-image: url("./images/Poses/laying-pose/cobra-large.jpeg");
-  height: 500px;
-}
-
 .nav-small-text {
   font-size: 0.75rem;
-}
-
-.home-section, .subscription-section {
-  background-color: #f5f5f5;
-}
-
-.subscription-section {
-  display: flex;
-  min-height: 87vh;
-  align-items: center;
-  justify-content: center;
-}
-
-.subscription-section h1 {
-  letter-spacing: .2em;
-  line-height: 1.3;
-  font-weight: 300;
-  color: #616767FF;
 }
 
 .btn.btn-sm {
@@ -134,15 +55,6 @@ img {
   pointer-events: none;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  line-height: 60px;
-  background-color: #f5f5f5;
-  color: #333c7c;
-}
-
 p {
   text-align: justify;
 }
@@ -159,82 +71,8 @@ p {
   fill: url(#rg);
 }
 
-.home-carousel-image {
-  height: 70vh;
-  background-size: cover;
-  background-position: top;
-}
-
-.home-carousel-image-1 {
-  background-image: url("./images/Home/IMG_5120.jpg");
-}
-
-.home-carousel-image-2 {
-  background-image: url("./images/Home/IMG_5136.jpg");
-}
-
-.home-carousel-image-3 {
-  background-image: url("./images/Home/IMG_5143.jpg");
-}
-
 .card {
   border-radius: .7rem;
-}
-
-.login-section {
-  height: 88vh;
-  background-size: cover;
-  background-position: top;
-  background-image: linear-gradient(to right, rgba(86, 86, 246, 0.6), rgba(47, 166, 210, 0.6)), url("./images/Login/IMG_6243.jpg");
-}
-
-.login-section-widget {
-  justify-content: center;
-}
-
-.form-wrapper {
-  background-color: white;
-  border-radius: 0.5rem;
-}
-
-.sigin-with-google-btn,
-.sigin-with-fb-btn {
-  background-color: #f5f5f5;
-  border: 1px solid #e1e1e1;
-  border-radius: 3rem;
-  padding: 0.75rem 1.25rem;
-}
-
-.google-logo {
-  height: 1.75vw;
-}
-
-.fb-logo {
-  height: 2vw;
-}
-
-.login-section-break {
-  color: #95989D;
-  font-family: 'Gilroy', sans-serif;
-  font-weight: 500;
-  font-size: 0.85em;
-  text-align: center;
-}
-
-.forgot-password a,
-.privacy-text a {
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 16px;
-  color: #003FFF;
-  font-family: 'Gilroy', sans-serif;
-}
-
-.btn-signin-signup-forgetpassword {
-  border-radius: 3rem;
-  font-family: 'Gilroy', sans-serif;
-  font-weight: 600;
 }
 
 .bg-color-primary-dark-blue {
@@ -254,243 +92,7 @@ p {
   transform: scale(1.2);
 }
 
-.privacy-text {
-  font-family: 'Noto Sans', sans-serif;
-  font-size: 0.825em;
-  line-height: 22px;
-  letter-spacing: 0.05px;
-  color: #797979;
-  text-align: left;
-}
-
-.reset-password-text {
-  color: #95989D;
-  font-family: 'Gilroy', sans-serif;
-  font-weight: 500;
-  font-size: 0.825em;
-}
-
-.user-profile-action-dropdown .dropdown-menu {
-  min-width: 6.5rem;
-}
-
-.user-profile-action-dropdown a,
-.user-profile-action-dropdown a:hover,
-.user-profile-action-dropdown a:focus {
-  color: black;
-}
-
-.user-profile-action-item:active {
-  background-color: #e9ecef;
-}
-
-.user-profile-action-item-link {
-  padding: 0;
-}
-
-.user-profile-container {
-  overflow-wrap: break-word;
-}
-
-.user-profile-icon {
-  border: 2px solid lightgrey;
-  border-radius: 10px;
-  background-color: #f5f5f5;
-}
-
-.billing-info-labels {
-  box-shadow: 0 0 1rem rgba(0,0,0,.15);
-  background-color: rgba(0, 0, 0, 0.08);
-}
-
-.app-loader-section.show {
-  display: flex;
-  position: fixed;
-  z-index: 1000;
-  background-color: rgba(255,255,255, 0.75);
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
-.app-loader-section > div {
-  margin: auto;
-}
-
-.change-password-btn-text {
-  font-size: 0.6rem;
-}
-
-.user-profile-details-subscription {
-  display: inline-block;
-}
-
-/*comment & like*/
-
-.user-comment-text-col > p {
-  width: fit-content;
-  max-width: 100%;
-  min-width: 90px;
-}
-
-.user-comment-text-col > p, .comment-input, .comment-input-sm {
-  background-color: #f5f5f5;
-  border-radius: 18px;
-}
-
-.comment-like-count:hover {
-  cursor: pointer;
-}
-
-.user-comment-like-count {
-  background-color: #ededed;
-  border-radius: 18px;
-  padding: 4px;
-  right: 4px;
-  bottom: -15px;
-  font-size: small;
-}
-
-.comment-like-text {
-  font-size: small;
-  bottom: -15px;
-}
-
-.comment-delete-text, .comment-edit-text {
-  bottom: 16px;
-  right: -26px;
-  padding-right: 8px;
-  padding-left: 8px;
-  color: #acacac;
-}
-
-.comment-edit-text {
-  right: -50px;
-}
-
-.comment-delete-text:hover, .comment-edit-text:hover {
-  background-color: #ededed;
-  border-radius: 18px;
-  cursor: pointer;
-  font-size: larger;
-  color: black;
-  transition: font-size 0.5s;
-}
-
-.comment-like-text:hover, .comment-edit-text:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.comment-input {
-  border: none;
-  padding: 0.65rem;
-}
-
-.comment-input-sm {
-  border: none;
-  padding: 0.25rem;
-}
-
-.comment-input-sm > input {
-  font-size: small;
-  padding-left: 0.5rem;
-}
-
-.comment-input:focus-visible, .comment-input-sm:focus-visible {
-  outline: none;
-}
-
-.like-already-likes {
-  color: #2374e1;
-}
-.comment-like-icon-section {
-  border-radius: 4px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
-
-.comment-like-icon-section:hover {
-  cursor: pointer;
-  background-color: #f5f5f5;
-}
-
-.comment-like-icon-section:first-child {
-  margin-right: 5px;
-  margin-left: 15px;
-}
-
-.comment-like-icon-section:last-child {
-  margin-right: 15px;
-  margin-left: 5px;
-}
-
-.edit-comment-input {
-  flex-grow: 1;
-}
-
-.header-action-col {
-  display: flex;
-  align-items: center;
-}
-
-
-@media (min-width: 768px) {
-  .app-main-navbar {
-    flex: 1 1 0;
-  }
-}
-
 @media (max-width: 576px) {
-  .header-action-col {
-    justify-content: space-between;
-  }
-
-  .user-profile-action-dropdown {
-    margin-right: 0 !important;
-  }
-
-  .header-action-external-link {
-    margin-left: 1rem !important;
-  }
-
-  .user-profile-name {
-    font-size: calc(1rem + .8vw);;
-    margin-top: 1rem;
-  }
-
-  .user-profile-email,
-  .user-profile-phone,
-  .user-profile-gender {
-    font-size: calc(0.75rem + .8vw);;
-    margin-top: 1rem;
-  }
-
-  .user-profile-info-section, .user-profile-edit-btn-section {
-    padding-right: 0 !important;
-    padding-left: 0 !important;
-  }
-
-  .btn-edit-profile {
-    margin-top: 1rem;
-  }
-
-  .user-profile-container {
-    padding: 0;
-  }
-
-  .user-profile-container-top-row {
-    margin-left: 1rem !important;
-    margin-right: 1rem !important;
-    padding: 1.5rem !important;
-  }
-
-  .yoga-poses-main-page-container {
-    margin-left: 2rem;
-    margin-right: 2rem;
-  }
-
   .video-responsive iframe {
     top: 0;
     left: 0;

@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../redux/store";
 import {standardSignIn, UserSignUpStates} from "../../redux/slices/UserSlice";
 import {useNavigate} from "react-router-dom";
+import './signin.css'
 
 interface SignInProps {
     setShowForgetPasswordSection: Function;

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import {RootState} from "../../redux/store";
 import {UserSignUpStates} from "../../redux/slices/UserSlice";
 import Billing from "./Billing";
+import './profile.css'
 
 const Profile: React.FC = () => {
     const navigate = useNavigate();

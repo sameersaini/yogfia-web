@@ -23,6 +23,10 @@ import PosesStanding from "./components/Poses/PosesStanding";
 import PosesLaying from "./components/Poses/PosesLaying";
 import PosesSitting from "./components/Poses/PosesSitting";
 import PosesCobra from "./components/Poses/LayingDown/Cobra";
+import PosesSpinx from "./components/Poses/LayingDown/Spinx";
+import PosesLocust from "./components/Poses/LayingDown/Locust";
+import PosesUpDog from "./components/Poses/LayingDown/Updog";
+import PosesHero from "./components/Poses/LayingDown/Hero";
 
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -43,6 +47,10 @@ const App: React.FC = () => {
               <Route path="/poses/sitting" element={<PosesSitting />}/>
               <Route path="/poses/laying" element={<PosesLaying />}/>
               <Route path="/poses/cobra-pose" element={<PosesCobra />}/>
+              <Route path="/poses/spinx-pose" element={<PosesSpinx />}/>
+              <Route path="/poses/locust-pose" element={<PosesLocust />}/>
+              <Route path="/poses/up-dog-pose" element={<PosesUpDog />}/>
+              <Route path="/poses/hero-pose" element={<PosesHero />}/>
               <Route path="/subscription" element={<Subscription />}/>
               <Route path="/profile" element={<Profile />}/>
               <Route path="*" element={<Navigate to="/" />} />

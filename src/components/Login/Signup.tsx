@@ -8,6 +8,7 @@ import {AppDispatch, RootState} from "../../redux/store";
 import PhoneInput from "react-phone-number-input";
 import 'react-phone-number-input/style.css'
 import {Value} from "react-phone-number-input";
+import './signin.css'
 
 const Signup: React.FC = () => {
     const {signUp} = useSelector((state: RootState) => state.user)

@@ -1,6 +1,7 @@
 import React from "react";
 import {Col, Container, Row} from "react-bootstrap";
 import Subscription from "../Home/Subscription";
+import './subscription.css'
 
 const SubscriptionHome: React.FC = () => {
     return (

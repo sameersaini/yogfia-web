@@ -13,6 +13,7 @@ import {
     CommentState, deleteArtifactCommentAction, updateArtifactCommentAction
 } from "../../redux/slices/artifactSlice";
 import {UserState} from "../../redux/slices/UserSlice";
+import './comments.css'
 
 const Comments: React.FC<{ artifactType: ArtifactTypes; artifactId: number }> = props => {
     const dispatch = useDispatch<AppDispatch>();
@@ -24,6 +25,7 @@ const Comments: React.FC<{ artifactType: ArtifactTypes; artifactId: number }> = 
     const isAlreadyLiked = () => {
         return artifactDetails?.likes.some(like => like?.user?.userId === userDetails.signIn?.userId);
     }
+    const isUserSignIn = !!userDetails.signIn.userId;
 
     return (
         <div className="section-comments mt-3">
@@ -47,10 +49,10 @@ const Comments: React.FC<{ artifactType: ArtifactTypes; artifactId: number }> = 
             <hr className="mb-2 mt-1"/>
             <Row className="text-center">
                 <Col
-                    className={`${!userDetails ? 'cursor-ban' : ''} comment-like-icon-section ${isAlreadyLiked() ? 'like-already-likes' : ''}`}
-                    title={!userDetails ? 'Please login to like' : ''}
+                    className={`${!isUserSignIn ? 'cursor-ban' : ''} comment-like-icon-section ${isAlreadyLiked() ? 'like-already-likes' : ''}`}
+                    title={!isUserSignIn ? 'Please login to like' : ''}
                     onClick={() => {
-                        if (userDetails) {
+                        if (isUserSignIn) {
                             if (isAlreadyLiked()) {
                                 dispatch(artifactUnLikeAction({
                                         artifactType: props.artifactType,
@@ -70,7 +72,7 @@ const Comments: React.FC<{ artifactType: ArtifactTypes; artifactId: number }> = 
                 </Col>
                 <Col
                     className={`comment-like-icon-section`}
-                    title={!userDetails ? 'Please login to comment' : ''}
+                    title={!isUserSignIn ? 'Please login to comment' : ''}
                     onClick={() => setIsCommentSectionVisible(!isCommentSectionVisible)}
                 >
                     <span><FontAwesomeIcon icon={faCommentAlt} size="lg"/> Comment</span>
@@ -82,9 +84,9 @@ const Comments: React.FC<{ artifactType: ArtifactTypes; artifactId: number }> = 
                 <input
                     type="text"
                     placeholder="Write a comment..."
-                    className={`w-100 comment-input mb-2 ${!userDetails ? 'cursor-ban' : ''}`}
-                    disabled={!userDetails}
-                    title={!userDetails ? 'Please login to comment' : ''}
+                    className={`w-100 comment-input mb-2 ${!isUserSignIn ? 'cursor-ban' : ''}`}
+                    disabled={!isUserSignIn}
+                    title={!isUserSignIn ? 'Please login to comment' : ''}
                     value={commentText}
                     onChange={event => {
                         setCommentText(event.target.value);
@@ -117,6 +119,7 @@ const Comment: React.FC<{ key: number; comment: CommentState; artifactType: Arti
     const [isEditMode, setEditMode] = useState(false);
     const [editCommentText, setEditCommentText] = useState(props.comment.text);
     const userDetails = useSelector<RootState, UserState>(state => state.user);
+    const isUserSignIn = !!userDetails.signIn.userId;
     const dispatch = useDispatch<AppDispatch>();
     const isCommentAlreadyLiked = () => {
         return props.comment?.likes.some(like => like?.user?.userId === userDetails.signIn?.userId);

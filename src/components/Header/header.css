@@ -1,0 +1,52 @@
+.header-action-col {
+    display: flex;
+    align-items: center;
+}
+
+.user-profile-action-dropdown .dropdown-menu {
+    min-width: 6.5rem;
+}
+
+.user-profile-action-dropdown a,
+.user-profile-action-dropdown a:hover,
+.user-profile-action-dropdown a:focus {
+    color: black;
+}
+
+.user-profile-action-item:active {
+    background-color: #e9ecef;
+}
+
+.user-profile-action-item-link {
+    padding: 0;
+}
+
+@media (min-width: 768px) {
+    .app-main-navbar {
+        flex: 1 1 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 807px){
+    .header-nav-col {
+        width: 66.66666667%;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-top-row {
+        padding-bottom: 0.5rem;
+    }
+
+    .header-action-col {
+        justify-content: space-between;
+    }
+
+    .header-action-external-link {
+        margin-left: 1rem !important;
+    }
+
+    .user-profile-action-dropdown {
+        margin-right: 0 !important;
+    }
+}

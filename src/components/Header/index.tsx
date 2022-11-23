@@ -8,6 +8,7 @@ import {AppDispatch, RootState} from "../../redux/store";
 import {logoutUser, UserSignUpStates} from "../../redux/slices/UserSlice";
 import {useCookies} from "react-cookie";
 import {resetSubscriptionState} from "../../redux/slices/subscriptionSlice";
+import './header.css'
 
 const Header: React.FC = () => {
     const location = useLocation();
@@ -16,9 +17,9 @@ const Header: React.FC = () => {
     const { signIn } = useSelector((state: RootState) => state.user)
 
     return (
-        <Row className='align-items-center' style={{ backgroundColor: '#F8F9FA'}}>
+        <Row className='header-top-row align-items-center'>
             <Col className='col-xl-10 col-md-9 col-sm-8 col-12 header-nav-col'>
-                <Navbar bg="light" className="py-2 px-3" expand="md">
+                <Navbar className="py-2 px-3" expand="md">
                     <svg width="0" height="0">
                         <radialGradient id="rg" r="150%" cx="30%" cy="107%">
                             <stop stopColor="#fdf497" offset="0" />
@@ -40,6 +41,9 @@ const Header: React.FC = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav fill activeKey={location.pathname} className='app-main-navbar'>
+                            <Nav.Item>
+                                <Nav.Link as={Link} to="/" eventKey="/">Home</Nav.Link>
+                            </Nav.Item>
                             <Nav.Item>
                                 <Nav.Link as={Link} to="/poses" eventKey="/poses">Poses</Nav.Link>
                             </Nav.Item>
