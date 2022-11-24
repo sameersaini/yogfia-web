@@ -14,6 +14,14 @@ const PosesSitting: React.FC = () => {
             </Row>
             <hr className="mx-auto mt-4" style={{ maxWidth: '300px'}}/>
             <Row className="mt-4 text-center">
+                <Col className='col-md-3 col-12 mt-2 cursor-pointer' onClick={() => navigate('/poses/child-pose')}>
+                    <div className="yoga-poses-type-image child-img"></div>
+                    <h4 className="yoga-poses-type-heading">Child Pose</h4>
+                </Col>
+                <Col className='col-md-3 col-12 mt-2 cursor-pointer' onClick={() => navigate('/poses/thunderbolt-pose')}>
+                    <div className="yoga-poses-type-image thunderbolt-img"></div>
+                    <h4 className="yoga-poses-type-heading">Thunderbolt Pose</h4>
+                </Col>
             </Row>
         </div>
     )

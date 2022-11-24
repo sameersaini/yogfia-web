@@ -10,7 +10,7 @@ body::-webkit-scrollbar {
 .App {
   user-select: none;
   min-height: 93vh;
-  background-color: rgba(239, 211, 211, 0.53);
+  background: rgba(239, 211, 211, 0.45);
 }
 
 .video-responsive {

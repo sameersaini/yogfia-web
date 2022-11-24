@@ -14,6 +14,10 @@ const PosesStanding: React.FC = () => {
             </Row>
             <hr className="mx-auto mt-4" style={{ maxWidth: '300px'}}/>
             <Row className="mt-4 text-center">
+                <Col className='col-md-3 col-12 mt-2 cursor-pointer' onClick={() => navigate('/poses/down-dog-pose')}>
+                    <div className="yoga-poses-type-image down-dog-img"></div>
+                    <h4 className="yoga-poses-type-heading">Downward-facing dog Pose</h4>
+                </Col>
             </Row>
         </div>
     )

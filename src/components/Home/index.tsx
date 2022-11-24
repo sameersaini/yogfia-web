@@ -4,6 +4,7 @@ import Reviews from "./Reviews";
 import Subscription from "./Subscription";
 import HomeCarousel from "./HomeCarousel";
 import './home.css'
+import NewPost from "./NewPost";
 
 const Home: React.FC = () => {
     return (
@@ -12,6 +13,7 @@ const Home: React.FC = () => {
             <HomeCarousel />
             {/* Review Cards Section*/}
             <Reviews />
+            <NewPost />
             {/* Subscription section */}
             {/*<Subscription />*/}
         </Container>

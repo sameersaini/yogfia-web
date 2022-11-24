@@ -40,7 +40,8 @@
 .yoga-poses-type-image {
     background-size: cover;
     background-position: bottom;
-    height: 250px;
+    height: 300px;
+    border-radius: 0.8rem;
 }
 
 .standing-yoga-img {
@@ -97,6 +98,33 @@
 
 .hero-yoga-img-large {
     background-image: url("../../images/Poses/laying-pose/hero-large.jpeg");
+    height: 500px;
+}
+
+.down-dog-img {
+    background-image: url("../../images/Poses/standing-pose/down-facing-dog-small.jpeg");
+}
+
+.down-dog-img-large {
+    background-image: url("../../images/Poses/standing-pose/down-facing-dog-large.jpeg");
+    height: 500px;
+}
+
+.child-img {
+    background-image: url("../../images/Poses/sitting-pose/child-small.jpg");
+}
+
+.child-img-large {
+    background-image: url("../../images/Poses/sitting-pose/child-large.jpg");
+    height: 500px;
+}
+
+.thunderbolt-img {
+    background-image: url("../../images/Poses/sitting-pose/thunderbolt-small.jpeg");
+}
+
+.thunderbolt-img-large {
+    background-image: url("../../images/Poses/sitting-pose/thunderbolt-large.jpeg");
     height: 500px;
 }
 

@@ -28,7 +28,7 @@ const PosesLaying: React.FC = () => {
                 </Col>
                 <Col className='col-md-3 col-12 mt-2 cursor-pointer' onClick={() => navigate('/poses/up-dog-pose')}>
                     <div className="yoga-poses-type-image up-dog-yoga-img"></div>
-                    <h4 className="yoga-poses-type-heading">Upward-Facing Dog</h4>
+                    <h4 className="yoga-poses-type-heading">Upward-Facing Dog Pose</h4>
                 </Col>
             </Row>
             <Row className="mt-4 text-center">
